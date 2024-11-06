@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Bar from './components/Bar.jsx';
 import Line from './components/Line.jsx';
 import Donut from './components/Donut.jsx';
+import User from './pages/User.jsx';
 
 const PrivateRoute = ({ children, allowedRoles }) => {
   const userRole = localStorage.getItem('userRole');
@@ -88,6 +89,14 @@ function App() {
             element={
               <PrivateRoute allowedRoles={['Admin']}>
                 <Donut />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/User"
+            element={
+              <PrivateRoute allowedRoles={['User']}>
+                <User />
               </PrivateRoute>
             }
           />

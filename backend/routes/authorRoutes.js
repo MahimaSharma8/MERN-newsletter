@@ -23,7 +23,7 @@ author.post(
         try {
             console.log("Incoming data:", req.body);
             const { Author, email, headline, Textcontent, Photos } = req.body; 
-
+            console.log(req.body.Textcontent);
             const newUser = new User({
                 Author,
                 email,
@@ -43,7 +43,7 @@ author.post(
 // GET route for users
 author.get('/', async (req, res) => {
     try {
-        const users = await User.find();
+        const users = await User.find({verified: false});
         res.status(200).json(users);
     } catch (err) {
         res.status(500).json({ message: 'Error retrieving users', error: err });
@@ -59,6 +59,15 @@ author.delete('/:author', async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: 'Error deleting user', error: err });
     }
+});
+author.get('/:email', async (req, res) => {
+    const email = req.params.email;
+    try {
+        const users = await User.find({email: email});
+        res.status(200).json(users);
+    } catch (err) {
+        res.status(500).json({ message: 'Error retrieving users', error: err });
+    } 
 });
 
 export default author;

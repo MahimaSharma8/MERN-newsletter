@@ -25,6 +25,8 @@ const SignIn = () => {
                 const role = data.userRole || 'User';
                 console.log(role);
                 localStorage.setItem('userRole', role);
+                localStorage.setItem('email', email);
+
                 if (role === "Admin"){
                     navigate('/Dashboard')
                 }

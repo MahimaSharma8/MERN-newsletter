@@ -29,6 +29,9 @@ function Navbar() {
                         <Link to="/Author">
                         <button className="font-bold text-2xl block p-4 focus:outline-none bg-[#360808]  text-white hover:text-zinc-50 shadow-rose-950 shadow-xl border-none hover:-translate-y-1">Submit Articles</button>
                         </Link>
+                        <Link to="/User">
+                        <button className="font-bold text-2xl block p-4 focus:outline-none bg-[#360808]  text-white hover:text-zinc-50 shadow-rose-950 shadow-xl border-none hover:-translate-y-1">User</button>
+                        </Link>
                         <SearchBar />
                     </li>
                 </ul >

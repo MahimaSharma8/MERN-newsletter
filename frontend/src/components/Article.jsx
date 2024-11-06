@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 function Articles({ currentPage }) {
     const [articles, setArticles] = useState([]);
     
-
     useEffect(() => {
         fetch(`http://localhost:5000/api/articles${currentPage}`)
             .then(response => {
@@ -15,7 +14,7 @@ function Articles({ currentPage }) {
             .then(data => {
                 const updatedData = data.map(article => ({
                     ...article,
-                    isLiked: false  // Add an individual isLiked for each article (something new I learnt is that react can have local data states)
+                    isLiked: false  // Local state for each article's like status
                 }));
                 setArticles(updatedData);
             })
@@ -49,32 +48,32 @@ function Articles({ currentPage }) {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {articles.map((article, idx) => (
-                <div key={article.Article_id} className="mb-4 pb-0 pr-4 border-r-4 border-black">
+                <div id={article.headline} key={article.Article_id} className="mb-4 pb-0 pr-4 border-r-4 border-black">
                     <hr className="m-auto my-4 w-[100%] border-2 border-black" />
                     <h2 className="text-3xl font-bold mb-4 text-center">{article.headline || `Article ${idx + 1}`}</h2>
                     <hr className="m-auto my-1 w-[100%] border-2 border-black" />
                     <div className="flex flex-col md:flex-row items-start">
-                        <img
-                            src={article.Photos[0]?.src}
-                            alt="First image"
-                            className="w-72 grayscale hover:grayscale-0 transition-all duration-300 mb-5 h-40"
-                        />
+                        {article.Photos && article.Photos[0] && (
+                            <img
+                                src={article.Photos[0]}
+                                className="w-72 grayscale hover:grayscale-0 transition-all duration-300 mb-5 h-40"
+                            />
+                        )}
                         <div className="ml-4">
-                            {article.Textcontent && article.Textcontent[0].text && (
+                            {article.Textcontent && article.Textcontent[0] && (
                                 <p className="font-sans text-sm first-letter:font-serif first-letter:text-3xl">
-                                    {article.Textcontent[0].text}
+                                    {article.Textcontent[0]}
                                 </p>
                             )}
                         </div>
                     </div>
                     <div className="flex flex-row">
-                        {article.Textcontent && article.Textcontent[1].text && (
-                            <p className="font-sans text-sm">{article.Textcontent[1].text}</p>
+                        {article.Textcontent && article.Textcontent[1] && (
+                            <p className="font-sans text-sm">{article.Textcontent[1]}</p>
                         )}
                         {article.Photos && article.Photos[1] && (
                             <img
-                                src={article.Photos[1].src}
-                                alt="Second image"
+                                src={article.Photos[1]}
                                 className="w-72 grayscale hover:grayscale-0 transition-all duration-300 h-40"
                             />
                         )}

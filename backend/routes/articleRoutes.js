@@ -1,13 +1,13 @@
 import express from "express";
 import Article1 from "../models/article1.js"; 
 import Article2 from "../models/article2.js"; 
+import User from "../models/user.js";
 const articleRoutes = express.Router();
 
-
 articleRoutes.get('/:collection', async (req, res) => {
-    const { collection } = req.params; 
+    const { collection } = req.params;
 
-    let ArticleModel; 
+    let ArticleModel;
 
     if (collection === 'articles1') {
         ArticleModel = Article1;
@@ -19,27 +19,18 @@ articleRoutes.get('/:collection', async (req, res) => {
 
     try {
         const articles = await ArticleModel.find();
-        const transformedArticles = articles.map(article => ({
-            ...article._doc,
-            Photos: article.Photos.map(photo => ({
-                index: photo.index,
-                src: String(photo.src), 
-            }))
-        }));
 
-        res.json(transformedArticles);
+        res.json(articles);
     } catch (err) {
         res.status(500).json({ message: 'Error retrieving articles', error: err });
     }
 });
 
-// Route to get a specific article by ID (keeping this unchanged)
 articleRoutes.get("/:collection/:Article_id", async (req, res) => {
-    const { collection, Article_id } = req.params; // Get collection and article_id from URL parameters
+    const { collection, Article_id } = req.params;
 
-    let ArticleModel; // To hold the reference to the appropriate model
+    let ArticleModel;
 
-    // Determine which model to use based on the collection name
     if (collection === 'articles1') {
         ArticleModel = Article1;
     } else if (collection === 'articles2') {
@@ -79,7 +70,6 @@ articleRoutes.patch('/:collection/:Article_id/likes', async (req, res) => {
         }
 
         article.likes += 1;
-        console.log(article.likes)
         await article.save();
 
         res.json({ message: 'Like updated successfully', likes: article.likes });
@@ -87,10 +77,27 @@ articleRoutes.patch('/:collection/:Article_id/likes', async (req, res) => {
         res.status(500).json({ message: 'Error updating likes', error: err.message });
     }
 });
+articleRoutes.post('/articles1', async(req, res) => {
+    const { Author, headline, Textcontent, Photos } = req.body;
+    const Article_id = Date.now();
+    const articleData = new Article1({
+        Article_id,
+        Author,
+        headline,
+        Textcontent,
+        Photos,
+    });
+
+    // Handle articleData as needed, like saving to a database
+    console.log("Verified Article Data:", articleData);
+
+    await articleData.save();
+    await User.updateOne({Author: Author, headline: headline },{$set:{verified:true}});
 
 
-
-
+    // Send response
+    res.status(200).send({ message: "Article verified successfully" });
+});
 
 
 export default articleRoutes;
