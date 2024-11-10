@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {useNavigate} from "react-router-dom";
-import video from "../components/5353375-hd_1920_1080_25fps.mp4"
+import video from "../assets/5353375-hd_1920_1080_25fps.mp4"
 function Form() {
     const [currentStep, setCurrentStep] = useState(1);
     const totalSteps = 3;

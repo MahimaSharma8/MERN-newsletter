@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import video from "./3944852-uhd_4096_2160_25fps.mp4"
+import video from "../assets/3944852-uhd_4096_2160_25fps.mp4"
 
 function Author() {
     const [formData, setFormData] = useState({

@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar.jsx";
 import Form from "./pages/Form.jsx";
 import SignIn from './pages/SignIn.jsx';
 import Dashboard from './pages/Dashboard.jsx';
-import Author from './components/Author.jsx';
+import Author from './pages/Author.jsx';
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Bar from './components/Bar.jsx';

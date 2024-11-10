@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; 
-import video from "../components/3959035-uhd_4096_2160_25fps.mp4";
+import video from "../assets/3959035-uhd_4096_2160_25fps.mp4";
 
 const SignIn = () => {
     const [email, setEmail] = useState('');

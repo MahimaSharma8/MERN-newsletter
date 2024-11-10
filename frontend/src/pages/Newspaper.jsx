@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Articles from '../components/Article.jsx';
-import crumpledPaper from './newspaper.jpg';
+import crumpledPaper from '../assets/newspaper.jpg';
 import { Link } from "react-router-dom";
 function Newspaper({ currentPage }) {
     useEffect(() => {
