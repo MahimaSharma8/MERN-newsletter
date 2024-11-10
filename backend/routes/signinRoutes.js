@@ -9,16 +9,15 @@ SigninRouter.post('/', async (req, res) => {
       const registration = await Registration.findOne({ email });  // Look for Registration by email
       
       if (!registration) {
-        return res.status(400).json({ message: 'Invalid email or password' });
+        return res.status(400).json({ message: 'Invalid email' });
       }
       const isMatch = await bcrypt.compare(password, registration.password);
 
   
       if (!isMatch) {
-        return res.status(400).json({ message: 'Invalid email or password' });
+        return res.status(400).json({ message: 'Invalid password' });
       }
       const userRole = registration.role || 'User';
-      console.log(registration.role)
 
       res.status(200).json({ message: 'Sign-in successful', userRole });
     } catch (error) {

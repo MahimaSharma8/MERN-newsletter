@@ -1,25 +1,11 @@
 import express from "express";
-import { body, validationResult } from "express-validator"; // Import validation tools
 import User from "../models/user.js"; 
 
 const author = express();
 author.use(express.json());
 
 // Validation rules 
-author.post(
-    "/",
-    [
-        body('Author').notEmpty().isAlpha('en-US', { ignore: ' ' }).withMessage('Author is required'),
-        body('email').isEmail().withMessage('Please provide a valid email'),
-        body('headline').notEmpty().withMessage('Headline is required'),
-    ],
-    async (req, res) => {
-        // Checking validation results in backend for submit articles 
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
-
+author.post("/",async (req, res) => {
         try {
             console.log("Incoming data:", req.body);
             const { Author, email, headline, Textcontent, Photos } = req.body; 

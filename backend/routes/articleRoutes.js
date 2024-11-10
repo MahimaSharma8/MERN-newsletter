@@ -4,7 +4,7 @@ import Article2 from "../models/article2.js";
 import User from "../models/user.js";
 const articleRoutes = express.Router();
 
-articleRoutes.get('/:collection', async (req, res) => {
+articleRoutes.get('/:collection', async (req, res) => { //request, response
     const { collection } = req.params;
 
     let ArticleModel;
@@ -18,7 +18,7 @@ articleRoutes.get('/:collection', async (req, res) => {
     }
 
     try {
-        const articles = await ArticleModel.find();
+        const articles = await ArticleModel.find(); //javascript is a asynchronous language, so we need await for it direct the control of code
 
         res.json(articles);
     } catch (err) {

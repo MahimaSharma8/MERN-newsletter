@@ -5,7 +5,7 @@ const searchRouter = express.Router();
 
 // Search route
 searchRouter.get("/", async (req, res) => {
-  const query = req.query.q;
+  const query = req.query.q; //q is a variable that stores query's value inside request. 
 
   if (!query) {
     return res.status(400).json({ error: "Search query is required" });
