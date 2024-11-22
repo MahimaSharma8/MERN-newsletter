@@ -13,13 +13,17 @@ import Bar from './components/Bar.jsx';
 import Line from './components/Line.jsx';
 import Donut from './components/Donut.jsx';
 import User from './pages/User.jsx';
-
 const PrivateRoute = ({ children, allowedRoles }) => {
   const userRole = localStorage.getItem('userRole');
 
   if (allowedRoles.includes(userRole)) {
     return children;
-  } else {
+  } 
+  else if(userRole == "User")
+  {
+    return <Navigate to="/Newspaper" /> 
+  }
+  else {
     return <Navigate to="/" />;
   }
 };

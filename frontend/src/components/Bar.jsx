@@ -1,5 +1,5 @@
 import React from 'react'
-import Barchart from "../components/Barchart";
+import Barchart from "../components/BarChart";
 function Bar() {
 
   return (

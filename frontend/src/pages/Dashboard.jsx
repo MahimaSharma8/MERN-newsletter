@@ -3,11 +3,11 @@ import { Layout, Modal, Button } from 'antd';
 import { CheckOutlined } from '@ant-design/icons';
 import MenuList from "../components/MenuList";
 import ToggleThemeButton from "../components/ToggleThemeButton";
-import Barchart from "../components/Barchart";
-import Linechart from "../components/Linechart";
-import Donutchart from "../components/Donutchart";
-
+import Barchart from "../components/BarChart";
+import Linechart from "../components/LineChart";
+import Donutchart from "../components/DonutChart";
 const { Header, Sider, Content } = Layout;
+
 
 function Dashboard() {
     const [darkTheme, setDarkTheme] = useState(false);

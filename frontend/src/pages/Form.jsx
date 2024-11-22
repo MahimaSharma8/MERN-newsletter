@@ -29,7 +29,7 @@ function Form() {
     const isValidEmail = (email) => /^[a-zA-Z0-9._%+-]+@mitwpu\.edu\.in$/.test(email);
     const isValidDepartment = (department, validDepartments) => validDepartments.includes(department);
     const isValidPassword = (password) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$/.test(password);
-    const isValidPhoneNumber = (phone) => /^\d{10}$/.test(phone);
+    const isValidPhoneNumber = (phone) => /^\d{10}$/.test(phone) && phone !== "0000000000";
     const isValidName = (name) => /^[a-zA-Z]+$/.test(name);
 
 
@@ -77,7 +77,7 @@ function Form() {
         e.preventDefault(); // Prevent default form submission
 
         try {
-            const response = await fetch('http://localhost:5000/register/', { // Correct port and path
+            const response = await fetch('http://localhost:5000/register/', { 
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

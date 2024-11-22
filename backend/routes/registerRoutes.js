@@ -1,5 +1,5 @@
 import express from "express";
-import Registration from "../models/register_model.js";
+import Registration from "../models/register.js";
 import bcrypt from 'bcrypt';
 const register = express.Router();
 

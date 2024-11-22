@@ -1,5 +1,5 @@
 import React from 'react'
-import Donutchart from "../components/Donutchart";
+import Donutchart from "../components/DonutChart";
 function Donut() {
 
   return (

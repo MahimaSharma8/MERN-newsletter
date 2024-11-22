@@ -22,7 +22,10 @@ const SearchBar = () => {
       setLoading(false);
     }
   };
-  
+  const clearResults = () => {
+    setResults([]);
+    setQuery("");
+  };
 
   return (
     <div className="search-container p-4 bg-red-950">
@@ -44,7 +47,7 @@ const SearchBar = () => {
       <div className="results mt-4">
         {results.length === 0 && !loading && <p>No results found.</p>}
         {results.map((result, index) => (
-          <a href={`#${result.headline}`} className="text-white hover:text-white"><div key={index} className="result-item border-b p-4">
+          <a href={`#${result.headline}`} className="text-white hover:text-white"><div key={index} className="result-item border-b p-4" onClick={clearResults}>
             <h3 className="text-xl font-semibold">{result.headline}</h3>
             <p>Author: {result.Author}</p>
             <p>{result.Textcontent[0]?.text}</p>

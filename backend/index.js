@@ -2,10 +2,10 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import articleRoutes from './routes/articleRoutes.js'; 
-import register from './routes/register.js';
+import register from './routes/registerRoutes.js';
 import SigninRouter from './routes/signinRoutes.js';
 import authorRoutes from "./routes/authorRoutes.js"
-import searchRouter from "./routes/search.js";
+import searchRouter from "./routes/searchRoutes.js";
 import dotenv from 'dotenv';
 dotenv.config();
 
